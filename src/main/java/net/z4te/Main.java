@@ -11,19 +11,18 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.UUID;
 import net.md_5.bungee.api.chat.TextComponent;
 
-public final class Clock extends JavaPlugin {
+public final class Main extends JavaPlugin {
 
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss VV");
     private final HashSet<UUID> toggledPlayers = new HashSet<>();
     @Override
     public void onEnable() {
         // Plugin startup logic
-        getLogger().info("ActionBarClock has been enabled!");
 
         new BukkitRunnable() {
             @Override
@@ -47,12 +46,17 @@ public final class Clock extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        getLogger().info("ActionBarClock has been disabled!");
 
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+        try {
+            Objects.requireNonNull(sender);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "This command can only be executed by a player");
