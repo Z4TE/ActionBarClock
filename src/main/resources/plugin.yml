@@ -1,0 +1,8 @@
+name: YYBR-clock
+version: '1.1'
+main: net.z4te.Clock
+api-version: '1.21'
+description: Display current time in the action bar, toggleable with /clock toggle.
+commands:
+  clock:
+    description: Toggle the action bar clock display.
