@@ -12,7 +12,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.UUID;
 import net.md_5.bungee.api.chat.TextComponent;
 
@@ -51,12 +50,6 @@ public final class Main extends JavaPlugin {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-        try {
-            Objects.requireNonNull(sender);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "This command can only be executed by a player");
