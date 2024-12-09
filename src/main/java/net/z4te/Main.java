@@ -1,6 +1,5 @@
 package net.z4te;
 
-import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -14,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.UUID;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.jetbrains.annotations.NotNull;
 
 public final class Main extends JavaPlugin {
 
@@ -49,12 +49,7 @@ public final class Main extends JavaPlugin {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED + "This command can only be executed by a player");
-            return true;
-        }
+    public boolean onCommand(@NotNull CommandSender sender, Command command, @NotNull String label, String[] args) {
 
         Player player = (Player) sender;
         String prefix = "[YYBR Clock] ";
@@ -70,10 +65,10 @@ public final class Main extends JavaPlugin {
                     toggledPlayers.add(playerId);
                     player.sendMessage(prefix + "Toggled the action bar clock on");
                 }
-                return true;
             } else {
                 player.sendMessage(prefix + "Too many arguments.");
             }
+            return true;
         }
         return false;
     }
